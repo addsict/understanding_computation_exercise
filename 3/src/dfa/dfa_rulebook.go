@@ -1,20 +1,24 @@
 package dfa
 
+import (
+	"fa"
+)
+
 type DFARulebook struct {
-	rules []*FARule
+	rules []*fa.FARule
 }
 
-func NewDFARulebook (rules []*FARule) *DFARulebook {
+func NewDFARulebook (rules []*fa.FARule) *DFARulebook {
 	return &DFARulebook{
 		rules: rules,
 	}
 }
 
 func (rb *DFARulebook) NextState(state int, character rune) int {
-	return rb.RuleFor(state, character).NextState()
+	return rb.ruleFor(state, character).NextState()
 }
 
-func (rb *DFARulebook) RuleFor(state int, character rune) *FARule {
+func (rb *DFARulebook) ruleFor(state int, character rune) *fa.FARule {
 	for _, rule := range rb.rules {
 		if rule.CanApply(state, character) {
 			return rule

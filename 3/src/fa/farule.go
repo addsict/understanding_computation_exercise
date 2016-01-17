@@ -1,4 +1,4 @@
-package dfa
+package fa
 
 type FARule struct {
 	state int
